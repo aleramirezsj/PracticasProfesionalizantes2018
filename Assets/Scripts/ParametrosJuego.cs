@@ -8,7 +8,7 @@ public class ParametrosJuego
 {
     public List<string> jugadores = new List<string>();
     public int velocidadActualPelotas=0;
-    public int cantidadActualPelotas=0;
+    public int cantidadTotalPelotas=0;
     public float tamanioActualPelota=0;
     public String jugadorActual;
     public bool iniciarInmediatamente;

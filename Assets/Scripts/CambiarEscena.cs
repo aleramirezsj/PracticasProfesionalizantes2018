@@ -27,7 +27,7 @@ public class CambiarEscena : MonoBehaviour {
 		FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.OpenOrCreate);
 
 		ParametrosJuego parametros=new ParametrosJuego();	
-		parametros.cantidadActualPelotas=(int)sldCantidadPelotas.value;	
+		parametros.cantidadTotalPelotas=(int)sldCantidadPelotas.value;	
 		parametros.tamanioActualPelota=sldTamanioPelota.value;
 		parametros.velocidadActualPelotas=(int)sldVelocidadPelotas.value;
 		parametros.jugadorActual=infNombreJugador.text;
@@ -45,11 +45,11 @@ public class CambiarEscena : MonoBehaviour {
 		//recuperados		
 		if (File.Exists(Application.persistentDataPath+"/DatosJuego.dat")){
 			BinaryFormatter bf= new BinaryFormatter();
-			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.Open);	
+			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.OpenOrCreate);	
 			ParametrosJuego parametros= (ParametrosJuego)bf.Deserialize(archivo);
 			archivo.Close();
 			sldTamanioPelota.value=parametros.tamanioActualPelota;
-			sldCantidadPelotas.value=parametros.cantidadActualPelotas;
+			sldCantidadPelotas.value=parametros.cantidadTotalPelotas;
 			sldVelocidadPelotas.value=parametros.velocidadActualPelotas;	
 			infNombreJugador.text=parametros.jugadorActual;	
 			iniciaInmediatamente.isOn=parametros.iniciarInmediatamente;
@@ -62,7 +62,7 @@ public class CambiarEscena : MonoBehaviour {
 	void OnDisable()
 	{
 		PlayerPrefs.SetString("nombreJugador", infNombreJugador.text);
-		PlayerPrefs.SetInt("cantidadPelotasActual", (int)sldCantidadPelotas.value);
+		PlayerPrefs.SetInt("cantidadTotalPelotas", (int)sldCantidadPelotas.value);
 		PlayerPrefs.SetFloat("escalaActualPelota", sldTamanioPelota.value);
 		PlayerPrefs.SetInt("velocidadPelotasActual", (int)sldVelocidadPelotas.value);
 		PlayerPrefs.SetInt("iniciarInmediatamente",iniciaInmediatamente.isOn?1:0);

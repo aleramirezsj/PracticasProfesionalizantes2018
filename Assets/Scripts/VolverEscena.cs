@@ -21,7 +21,7 @@ public class VolverEscena : MonoBehaviour {
 	}
 
 	void Start () {
-		
+		Debug.Log("inicio de volverEscena");
 	}
 
 	void OnDisable()

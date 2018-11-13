@@ -3,56 +3,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Sprites;
+using System;
 
 public class ComportamientoPelota : MonoBehaviour {
 	public bool juegoIniciado= false;
 	public Rigidbody2D rbBall;
 	public Canvas canvas;
-	private int cantidadPelotasActual;
+	private int cantidadTotalPelotas;
 	private float escalaActualPelota;
 	private int velocidadPelotasActual;
-	private int tiempoDeColor;
-	private int tiempoDeInicio;
+	public static int tiempoDeColor;
+	public static int tiempoDeInicio;
 	public static int instancias;
 	public Text txtNombreJugador;
 	public Text txtTiempoDeInicio;
-	private Color colorOriginal;
+	public static Color colorOriginal;
 	int segundos=0;
 	float contadorDeSegundos=0;
 	float medidaDeTiempo=1;
 	bool iniciarInmediatamente;
 	static public bool finalizarJuego;
 	bool continuarRebotes;
+	static public int cantidadResaltadas;
+	static public int cantidadEncontradas;
+	public GameObject pelota;
 	
 
     void Start () {
 		Logs();
-		//RectTransform canvasDimensiones = canvas.GetComponent<RectTransform> ();
-		float x=Random.Range(-7,7);
-		float y=Random.Range(-4,4);
-		Vector3 posicionAleatoria = new Vector3(x,y,transform.position.z);
+		//almaceno el color original en la propiedad estática 
+		if(instancias==0)
+			colorOriginal=GetComponent<Renderer>().material.color;
+		GameObject pelotaInstanciada;
 		//transform.position=Camera.main.ScreenToWorldPoint(posicionAleatoria);
-		transform.position=posicionAleatoria;
+		transform.position=obtenerPosicionAleatoria();
 		transform.localScale=new Vector3(escalaActualPelota,escalaActualPelota,escalaActualPelota);
-		if(instancias<cantidadPelotasActual-1){
-			for(int i=0;i<cantidadPelotasActual-1;i++){
-				x=Random.Range(-7,7);
-				y=Random.Range(-4,4);
-				posicionAleatoria = new Vector3(x,y,transform.position.z);
-				GameObject.Instantiate(this, posicionAleatoria, transform.rotation);
+		if(instancias<cantidadTotalPelotas-1){
+			for(int i=0;i<cantidadTotalPelotas-1;i++){
+				pelotaInstanciada=Instantiate(pelota, obtenerPosicionAleatoria(), transform.rotation) as GameObject;
 				instancias++;
-				if(instancias==cantidadPelotasActual-1){
-					gameObject.tag="Resaltada";
-					colorOriginal=GetComponent<Renderer>().material.color;
-					GetComponent<Renderer>().material.color = Color.red;
+				if(cantidadTotalPelotas-instancias<=cantidadResaltadas){
+					pelotaInstanciada.tag="Resaltada";
+					
+					pelotaInstanciada.GetComponent<Renderer>().material.color = Color.red;
 				}
 			}
 		}
 		
 	}
-	void OnEnable()
+
+    private Vector3 obtenerPosicionAleatoria()
+    {
+		float x=UnityEngine.Random.Range(-7,7);
+		float y=UnityEngine.Random.Range(-4,4);
+		Vector3 posicionAleatoria = new Vector3(x,y,transform.position.z);    
+		return posicionAleatoria;
+	}
+
+    void OnEnable()
 	{
-		cantidadPelotasActual=PlayerPrefs.GetInt("cantidadPelotasActual");
+		cantidadTotalPelotas=PlayerPrefs.GetInt("cantidadTotalPelotas");
 		escalaActualPelota=PlayerPrefs.GetFloat("escalaActualPelota");
 		velocidadPelotasActual=PlayerPrefs.GetInt("velocidadPelotasActual")*2;
 		txtNombreJugador.text=PlayerPrefs.GetString("nombreJugador");
@@ -69,10 +79,10 @@ public class ComportamientoPelota : MonoBehaviour {
 		{
 			if(Input.GetMouseButtonDown(0)||iniciarInmediatamente)
 			{
-				int multiX=Random.Range(-1,0);
+				int multiX=UnityEngine.Random.Range(-1,0);
 				if (multiX==0)
 					multiX=1;
-				int multiY=Random.Range(-1,0);
+				int multiY=UnityEngine.Random.Range(-1,0);
 				if(multiY==0)
 					multiY=1;
 				rbBall.velocity=new Vector2(velocidadPelotasActual*multiX,velocidadPelotasActual*multiY);				
@@ -87,9 +97,10 @@ public class ComportamientoPelota : MonoBehaviour {
 				segundos++;
 				txtTiempoDeInicio.text=(tiempoDeInicio+tiempoDeColor-segundos).ToString();
 			}
-			if(segundos==tiempoDeColor && gameObject.tag=="Resaltada"){
-				//GetComponent<Renderer>().material.color = Color.green;
-				GetComponent<Renderer>().material.color = colorOriginal;
+			if(segundos==tiempoDeColor){
+				GameObject pelotaActual=gameObject.GetComponent<ComportamientoPelota>().pelota;
+				pelotaActual.GetComponent<Renderer>().material.color=colorOriginal;
+
 			}
 			if(tiempoDeInicio+tiempoDeColor==segundos-1){
 				txtTiempoDeInicio.enabled=false;
@@ -101,6 +112,7 @@ public class ComportamientoPelota : MonoBehaviour {
 		{
 			rbBall.velocity=new Vector2(0,0);
 		}
+		//Debug.Log(GetComponent<Renderer>().material.color);
 
 
 		
@@ -110,11 +122,16 @@ public class ComportamientoPelota : MonoBehaviour {
 
 	void OnMouseDown ()
     {
-		if (gameObject.tag=="Resaltada"&& juegoIniciado && segundos>tiempoDeColor+tiempoDeInicio)
+		GameObject pelotaPresionada=gameObject.GetComponent<ComportamientoPelota>().pelota;
+		if (pelotaPresionada.tag=="Resaltada"&& juegoIniciado && segundos>tiempoDeColor+tiempoDeInicio)
 		{
         	rbBall.velocity=new Vector2(0,0);
-			finalizarJuego=true;
-			GetComponent<Renderer>().material.color = Color.red;
+			pelotaPresionada.GetComponent<Renderer>().material.color=Color.red;			
+			cantidadEncontradas++;
+			Debug.Log("Encontradas:"+cantidadEncontradas.ToString());
+			if (cantidadEncontradas==cantidadResaltadas)
+				finalizarJuego=true;
+			
 
 		}
     }
