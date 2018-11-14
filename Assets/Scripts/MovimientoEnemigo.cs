@@ -10,7 +10,7 @@ public class MovimientoEnemigo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (pelota.GetComponent<ComportamientoPelota>().juegoIniciado)
+		if (ComportamientoPelota.juegoIniciado)
 		{
 			if(pelota.position.y>transform.position.y)
 				transform.position=new Vector3(transform.position.x,

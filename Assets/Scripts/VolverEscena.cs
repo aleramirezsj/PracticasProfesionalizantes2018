@@ -14,9 +14,11 @@ public class VolverEscena : MonoBehaviour {
 	public void CambiarEscenaA(string nombreEscena)
 	{
 		SceneManager.LoadScene(nombreEscena);
-		pelota.GetComponent<ComportamientoPelota>().juegoIniciado=false;
+		ComportamientoPelota.juegoIniciado=false;
 		ComportamientoPelota.finalizarJuego=false;
+		ComportamientoPelota.cantidadEncontradas=0;
 		ComportamientoPelota.instancias=0;
+		ComportamientoPelota.pelotasInstanciadas.Clear();
 
 	}
 

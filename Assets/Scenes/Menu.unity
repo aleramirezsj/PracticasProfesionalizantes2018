@@ -838,6 +838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TxtCantidadResaltadas: {fileID: 2073420788}
   sldCantidadResaltadas: {fileID: 327053988}
+  cantidadResaltadas: 0
 --- !u!114 &327053988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4771,6 +4772,7 @@ MonoBehaviour:
   sldTamanioPelota: {fileID: 748551102}
   sldVelocidadPelotas: {fileID: 787528331}
   sldCantidadPelotas: {fileID: 848555856}
+  sldCantidadResaltadas: {fileID: 327053988}
   sldTiempoDeColor: {fileID: 1473998659}
   sldTiempoDeInicio: {fileID: 7604569}
   infNombreJugador: {fileID: 1383408038}

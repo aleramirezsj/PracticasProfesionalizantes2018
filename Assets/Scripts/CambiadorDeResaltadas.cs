@@ -7,6 +7,7 @@ public class CambiadorDeResaltadas : MonoBehaviour {
 
 	public Text TxtCantidadResaltadas;
 	public Slider sldCantidadResaltadas;
+	public int cantidadResaltadas;
 
 	// Use this for initialization
 	void Start () {
@@ -15,8 +16,9 @@ public class CambiadorDeResaltadas : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (sldCantidadResaltadas.value!=ComportamientoPelota.cantidadResaltadas)
+		if (sldCantidadResaltadas.value!=cantidadResaltadas)
 		{
+			cantidadResaltadas=(int)sldCantidadResaltadas.value;
 			ComportamientoPelota.cantidadResaltadas=(int)sldCantidadResaltadas.value;
 			TxtCantidadResaltadas.text=ComportamientoPelota.cantidadResaltadas.ToString();
         }

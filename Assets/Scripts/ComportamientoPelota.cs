@@ -6,7 +6,8 @@ using UnityEngine.Sprites;
 using System;
 
 public class ComportamientoPelota : MonoBehaviour {
-	public bool juegoIniciado= false;
+	//public static ComportamientoPelota Instance {get; set;}
+	public static bool juegoIniciado= false;
 	public Rigidbody2D rbBall;
 	public Canvas canvas;
 	private int cantidadTotalPelotas;
@@ -27,6 +28,7 @@ public class ComportamientoPelota : MonoBehaviour {
 	static public int cantidadResaltadas;
 	static public int cantidadEncontradas;
 	public GameObject pelota;
+	public static List<GameObject> pelotasInstanciadas=new List<GameObject>();
 	
 
     void Start () {
@@ -44,21 +46,15 @@ public class ComportamientoPelota : MonoBehaviour {
 				instancias++;
 				if(cantidadTotalPelotas-instancias<=cantidadResaltadas){
 					pelotaInstanciada.tag="Resaltada";
-					
 					pelotaInstanciada.GetComponent<Renderer>().material.color = Color.red;
 				}
+				pelotasInstanciadas.Add(pelotaInstanciada);
 			}
 		}
 		
 	}
 
-    private Vector3 obtenerPosicionAleatoria()
-    {
-		float x=UnityEngine.Random.Range(-7,7);
-		float y=UnityEngine.Random.Range(-4,4);
-		Vector3 posicionAleatoria = new Vector3(x,y,transform.position.z);    
-		return posicionAleatoria;
-	}
+
 
     void OnEnable()
 	{
@@ -70,6 +66,7 @@ public class ComportamientoPelota : MonoBehaviour {
 		tiempoDeColor=PlayerPrefs.GetInt("tiempoDeColor");
 		tiempoDeInicio=PlayerPrefs.GetInt("tiempoDeInicio");
 		continuarRebotes=(PlayerPrefs.GetInt("chkContinuarRebotes"))==1;
+		cantidadResaltadas=PlayerPrefs.GetInt("cantidadResaltadas");
 		//Debug.Log("llega el valor "+PlayerPrefs.GetInt("iniciarInmediatamente").ToString());
 
 	}	
@@ -85,7 +82,12 @@ public class ComportamientoPelota : MonoBehaviour {
 				int multiY=UnityEngine.Random.Range(-1,0);
 				if(multiY==0)
 					multiY=1;
-				rbBall.velocity=new Vector2(velocidadPelotasActual*multiX,velocidadPelotasActual*multiY);				
+				foreach(GameObject pelo in pelotasInstanciadas){
+					pelo.GetComponent<Rigidbody2D>().velocity=new Vector2(velocidadPelotasActual*multiX,velocidadPelotasActual*multiY);
+					Debug.Log("movimiento pelota");		
+				}
+				
+				
 				juegoIniciado=true;
 			}
 		}
@@ -95,7 +97,7 @@ public class ComportamientoPelota : MonoBehaviour {
 			if (contadorDeSegundos >= medidaDeTiempo){
 				contadorDeSegundos=0;
 				segundos++;
-				txtTiempoDeInicio.text=(tiempoDeInicio+tiempoDeColor-segundos).ToString();
+				
 			}
 			if(segundos==tiempoDeColor){
 				GameObject pelotaActual=gameObject.GetComponent<ComportamientoPelota>().pelota;
@@ -103,21 +105,27 @@ public class ComportamientoPelota : MonoBehaviour {
 
 			}
 			if(tiempoDeInicio+tiempoDeColor==segundos-1){
-				txtTiempoDeInicio.enabled=false;
+				//txtTiempoDeInicio.enabled=false;
 				if(continuarRebotes==false)
 					rbBall.velocity=new Vector2(0,0);
 			}
 		}
-		if(finalizarJuego)
+		if(finalizarJuego && juegoIniciado)
 		{
 			rbBall.velocity=new Vector2(0,0);
+			txtTiempoDeInicio.enabled=true;
+			//GUI.Label (new Rect (0,0,100,50), "This is the text string for a Label Control");
+			juegoIniciado=false;
+			
+		}
+		if(tiempoDeInicio+tiempoDeColor>segundos-1)
+			txtTiempoDeInicio.text=(tiempoDeInicio+tiempoDeColor-segundos).ToString();
+		else
+		{
+			string lcCero=(contadorDeSegundos*100)<10?"0":"";
+			txtTiempoDeInicio.text=(segundos-(tiempoDeInicio+tiempoDeColor)).ToString()+":"+lcCero+((int)(contadorDeSegundos*100)).ToString();
 		}
 		//Debug.Log(GetComponent<Renderer>().material.color);
-
-
-		
-		
-
 	}
 
 	void OnMouseDown ()
@@ -131,16 +139,25 @@ public class ComportamientoPelota : MonoBehaviour {
 			Debug.Log("Encontradas:"+cantidadEncontradas.ToString());
 			if (cantidadEncontradas==cantidadResaltadas)
 				finalizarJuego=true;
-			
-
 		}
     }
 
 	void Logs (){
+		Debug.Log("inicio pelota");
 		/* Debug.Log("z de la pelota "+transform.position.z);
 		//Debug.Log("z de el canvas "+canvasDimensiones.position.z);
 		Debug.Log("x de la pelota "+transform.position.x);
 		Debug.Log("y de la pelota "+transform.position.y);*/
 		//Debug.Log(iniciarInmediatamente.ToString());
 	}
+
+	private Vector3 obtenerPosicionAleatoria()
+    {
+		float x=UnityEngine.Random.Range(-7,7);
+		float y=UnityEngine.Random.Range(-4,4);
+		Vector3 posicionAleatoria = new Vector3(x,y,transform.position.z);    
+		return posicionAleatoria;
+	}
+
+
 }

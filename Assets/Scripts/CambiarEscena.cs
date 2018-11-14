@@ -11,6 +11,7 @@ public class CambiarEscena : MonoBehaviour {
 	public Slider sldTamanioPelota;
 	public Slider sldVelocidadPelotas;
 	public Slider sldCantidadPelotas;
+	public Slider sldCantidadResaltadas;
 	public Slider sldTiempoDeColor;
 	public Slider sldTiempoDeInicio;
 	public TextMeshProUGUI infNombreJugador;
@@ -28,10 +29,11 @@ public class CambiarEscena : MonoBehaviour {
 
 		ParametrosJuego parametros=new ParametrosJuego();	
 		parametros.cantidadTotalPelotas=(int)sldCantidadPelotas.value;	
+		parametros.cantidadResaltadas=(int)sldCantidadResaltadas.value;
 		parametros.tamanioActualPelota=sldTamanioPelota.value;
 		parametros.velocidadActualPelotas=(int)sldVelocidadPelotas.value;
 		parametros.jugadorActual=infNombreJugador.text;
-		parametros.jugadores.Add(infNombreJugador.text);
+		//parametros.jugadores.Add(infNombreJugador.text);
 		parametros.iniciarInmediatamente=iniciaInmediatamente.isOn;
 		parametros.tiempoDeColor=(int)sldTiempoDeColor.value;
 		parametros.tiempoDeInicio=(int)sldTiempoDeInicio.value;
@@ -50,6 +52,8 @@ public class CambiarEscena : MonoBehaviour {
 			archivo.Close();
 			sldTamanioPelota.value=parametros.tamanioActualPelota;
 			sldCantidadPelotas.value=parametros.cantidadTotalPelotas;
+			sldCantidadResaltadas.value=parametros.cantidadResaltadas;
+			Debug.Log("Resaltadas:"+parametros.cantidadResaltadas);
 			sldVelocidadPelotas.value=parametros.velocidadActualPelotas;	
 			infNombreJugador.text=parametros.jugadorActual;	
 			iniciaInmediatamente.isOn=parametros.iniciarInmediatamente;
@@ -63,6 +67,7 @@ public class CambiarEscena : MonoBehaviour {
 	{
 		PlayerPrefs.SetString("nombreJugador", infNombreJugador.text);
 		PlayerPrefs.SetInt("cantidadTotalPelotas", (int)sldCantidadPelotas.value);
+		PlayerPrefs.SetInt("cantidadResaltadas",(int)sldCantidadResaltadas.value);
 		PlayerPrefs.SetFloat("escalaActualPelota", sldTamanioPelota.value);
 		PlayerPrefs.SetInt("velocidadPelotasActual", (int)sldVelocidadPelotas.value);
 		PlayerPrefs.SetInt("iniciarInmediatamente",iniciaInmediatamente.isOn?1:0);

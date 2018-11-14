@@ -26,7 +26,7 @@ public class FinDelJuego : MonoBehaviour {
 			puntajeEnemigo++;
 			ActualizarTextoPuntajes(puntajeEnemigoText,puntajeEnemigo);
 		}
-		pelota.GetComponent<ComportamientoPelota>().juegoIniciado=false;
+		ComportamientoPelota.juegoIniciado=false;
 		ChequearPuntaje();
 
 	}

@@ -14,6 +14,6 @@ public class ParametrosJuego
     public bool iniciarInmediatamente;
     public int tiempoDeColor=1;
     public int tiempoDeInicio=1;
-
     public bool continuarRebotes;
+    public int cantidadResaltadas=0;
 }
