@@ -115,6 +115,9 @@ public class ComportamientoPelota : MonoBehaviour {
 			rbBall.velocity=new Vector2(0,0);
 			txtTiempoDeInicio.enabled=true;
 			//GUI.Label (new Rect (0,0,100,50), "This is the text string for a Label Control");
+			SpriteRenderer sprite=txtTiempoDeInicio.GetComponent<SpriteRenderer>();
+			sprite.sortingOrder = 100;
+            sprite.sortingLayerName = "Texto";
 			juegoIniciado=false;
 			
 		}
