@@ -7,13 +7,13 @@ using UnityEngine;
 public class ParametrosJuego
 {
     public List<string> jugadores = new List<string>();
-    public int velocidadActualPelotas=0;
-    public int cantidadTotalPelotas=0;
-    public float tamanioActualPelota=0;
+    public int velocidadActualPelotas=1;
+    public int cantidadTotalPelotas=2;
+    public float tamanioActualPelota=1;
     public String jugadorActual;
-    public bool iniciarInmediatamente;
+    public bool iniciarInmediatamente=false;
     public int tiempoDeColor=1;
     public int tiempoDeInicio=1;
-    public bool continuarRebotes;
-    public int cantidadResaltadas=0;
+    public bool continuarRebotes=false;
+    public int cantidadResaltadas=1;
 }

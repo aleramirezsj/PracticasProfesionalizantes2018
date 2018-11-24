@@ -17,6 +17,7 @@ public class ComportamientoPelota : MonoBehaviour {
 	public static int tiempoDeInicio;
 	public static int instancias;
 	public Text txtNombreJugador;
+	public Text txtJugador;
 	public Text txtTiempoDeInicio;
 	public static Color colorOriginal;
 	int segundos=0;
@@ -28,18 +29,21 @@ public class ComportamientoPelota : MonoBehaviour {
 	static public int cantidadResaltadas;
 	static public int cantidadEncontradas;
 	public GameObject pelota;
-	public static List<GameObject> pelotasInstanciadas=new List<GameObject>();
+	public static List<GameObject> pelotasEnElJuego=new List<GameObject>();
+	public static bool esNecesarioVolver=false;
 	
 
     void Start () {
 		Logs();
-		//almaceno el color original en la propiedad estática 
-		if(instancias==0)
+		//almaceno el color original en la propiedad estática y la pelota original en la lista de pelotas
+		if(instancias==0){
 			colorOriginal=GetComponent<Renderer>().material.color;
+			pelotasEnElJuego.Add(pelota);
+		}
 		GameObject pelotaInstanciada;
 		//transform.position=Camera.main.ScreenToWorldPoint(posicionAleatoria);
 		transform.position=obtenerPosicionAleatoria();
-		transform.localScale=new Vector3(escalaActualPelota,escalaActualPelota,escalaActualPelota);
+		transform.localScale=new Vector3(escalaActualPelota/2,escalaActualPelota/2,escalaActualPelota/2);
 		if(instancias<cantidadTotalPelotas-1){
 			for(int i=0;i<cantidadTotalPelotas-1;i++){
 				pelotaInstanciada=Instantiate(pelota, obtenerPosicionAleatoria(), transform.rotation) as GameObject;
@@ -48,7 +52,7 @@ public class ComportamientoPelota : MonoBehaviour {
 					pelotaInstanciada.tag="Resaltada";
 					pelotaInstanciada.GetComponent<Renderer>().material.color = Color.red;
 				}
-				pelotasInstanciadas.Add(pelotaInstanciada);
+				pelotasEnElJuego.Add(pelotaInstanciada);
 			}
 		}
 		
@@ -72,23 +76,26 @@ public class ComportamientoPelota : MonoBehaviour {
 	}	
 	
 	void FixedUpdate () {
-		if (!juegoIniciado)
+		if (!juegoIniciado && !esNecesarioVolver)
 		{
 			if(Input.GetMouseButtonDown(0)||iniciarInmediatamente)
 			{
-				int multiX=UnityEngine.Random.Range(-1,0);
-				if (multiX==0)
-					multiX=1;
-				int multiY=UnityEngine.Random.Range(-1,0);
-				if(multiY==0)
-					multiY=1;
-				foreach(GameObject pelo in pelotasInstanciadas){
-					pelo.GetComponent<Rigidbody2D>().velocity=new Vector2(velocidadPelotasActual*multiX,velocidadPelotasActual*multiY);
-					Debug.Log("movimiento pelota");		
-				}
 				
-				
+				foreach(GameObject pelo in pelotasEnElJuego){
+					int multiX=UnityEngine.Random.Range(1,3);
+					if (multiX==2)
+						multiX=-1;
+					int multiY=UnityEngine.Random.Range(1,3);
+					if(multiY==2)
+						multiY=-1;
+					//saco el valor 0 y el valor máximo como posibles resultados porque el movimiento de la pelota no tendría ninguna 
+					//inclinación (el valor máximo siempre es excluido de los resultados en Random.Range)
+					int velocidadXAleatoria=UnityEngine.Random.Range(1,velocidadPelotasActual);	
+					int velocidadYAleatoria=velocidadPelotasActual-velocidadXAleatoria;
+					pelo.GetComponent<Rigidbody2D>().velocity=new Vector2(velocidadXAleatoria*multiX,velocidadYAleatoria*multiY);
+				}				
 				juegoIniciado=true;
+				esNecesarioVolver=true;
 			}
 		}
 		if(juegoIniciado)
@@ -105,28 +112,21 @@ public class ComportamientoPelota : MonoBehaviour {
 
 			}
 			if(tiempoDeInicio+tiempoDeColor==segundos-1){
-				//txtTiempoDeInicio.enabled=false;
+				txtTiempoDeInicio.enabled=false;
+				txtNombreJugador.enabled=false;
+				txtJugador.enabled=false;
 				if(continuarRebotes==false)
 					rbBall.velocity=new Vector2(0,0);
 			}
 		}
-		if(finalizarJuego && juegoIniciado)
-		{
-			rbBall.velocity=new Vector2(0,0);
-			txtTiempoDeInicio.enabled=true;
-			//GUI.Label (new Rect (0,0,100,50), "This is the text string for a Label Control");
-			SpriteRenderer sprite=txtTiempoDeInicio.GetComponent<SpriteRenderer>();
-			sprite.sortingOrder = 100;
-            sprite.sortingLayerName = "Texto";
-			juegoIniciado=false;
-			
-		}
-		if(tiempoDeInicio+tiempoDeColor>segundos-1)
+
+		if(tiempoDeInicio+tiempoDeColor>=segundos)
 			txtTiempoDeInicio.text=(tiempoDeInicio+tiempoDeColor-segundos).ToString();
 		else
 		{
 			string lcCero=(contadorDeSegundos*100)<10?"0":"";
-			txtTiempoDeInicio.text=(segundos-(tiempoDeInicio+tiempoDeColor)).ToString()+":"+lcCero+((int)(contadorDeSegundos*100)).ToString();
+			txtTiempoDeInicio.text=((segundos-1)-(tiempoDeInicio+tiempoDeColor)).ToString()+":"+lcCero+((int)(contadorDeSegundos*100)).ToString();
+
 		}
 		//Debug.Log(GetComponent<Renderer>().material.color);
 	}
@@ -134,24 +134,45 @@ public class ComportamientoPelota : MonoBehaviour {
 	void OnMouseDown ()
     {
 		GameObject pelotaPresionada=gameObject.GetComponent<ComportamientoPelota>().pelota;
-		if (pelotaPresionada.tag=="Resaltada"&& juegoIniciado && segundos>tiempoDeColor+tiempoDeInicio)
+		if (pelotaPresionada.tag=="Resaltada"&& juegoIniciado && segundos>=tiempoDeColor+tiempoDeInicio)
 		{
-        	rbBall.velocity=new Vector2(0,0);
+        	//rbBall.velocity=new Vector2(0,0);
 			pelotaPresionada.GetComponent<Renderer>().material.color=Color.red;			
 			cantidadEncontradas++;
-			Debug.Log("Encontradas:"+cantidadEncontradas.ToString());
+			//Debug.Log("Encontradas:"+cantidadEncontradas.ToString());
+			//Debug.Log("Cantidad a resaltar:"+cantidadResaltadas.ToString());
 			if (cantidadEncontradas==cantidadResaltadas)
+			{
+				foreach(GameObject pelo in pelotasEnElJuego){
+					pelo.GetComponent<Rigidbody2D>().velocity=new Vector2(0,0);
+				}
+				txtTiempoDeInicio.enabled=true;
+				txtNombreJugador.enabled=true;
+				txtJugador.enabled=true;
+				juegoIniciado=false;
 				finalizarJuego=true;
+				esNecesarioVolver=true;
+			}
+				
 		}
     }
 
 	void Logs (){
-		Debug.Log("inicio pelota");
+		//Debug.Log("inicio pelota");
 		/* Debug.Log("z de la pelota "+transform.position.z);
 		//Debug.Log("z de el canvas "+canvasDimensiones.position.z);
 		Debug.Log("x de la pelota "+transform.position.x);
 		Debug.Log("y de la pelota "+transform.position.y);*/
 		//Debug.Log(iniciarInmediatamente.ToString());
+		
+		//SEGUIMIENTO DE VALORES DE VELOCIDAD
+		//Debug.Log("valor en velocidadPelotasActual:"+velocidadPelotasActual.ToString());	
+		//Debug.Log("valor en velocidadXAleatoria:"+velocidadXAleatoria.ToString());
+		//Debug.Log("valor en velocidadYAleatoria:"+velocidadYAleatoria.ToString());		
+		//Debug.Log("valor en x para velocidad:"+pelo.GetComponent<Rigidbody2D>().velocity.x.ToString());
+		//Debug.Log("valor en y para velocidad:"+pelo.GetComponent<Rigidbody2D>().velocity.y.ToString());
+		//Debug.Log("multiX:"+multiX.ToString());	
+		//Debug.Log("multiY:"+multiY.ToString());			
 	}
 
 	private Vector3 obtenerPosicionAleatoria()

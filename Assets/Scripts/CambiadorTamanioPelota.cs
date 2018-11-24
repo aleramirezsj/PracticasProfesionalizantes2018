@@ -7,6 +7,7 @@ public class CambiadorTamanioPelota : MonoBehaviour {
 
 	private float escalaActualPelota;
 	public Slider sldTamanioPelota;
+	public Text txtTamanioPelota;
 	public Transform pelota;
 	// Use this for initialization
 	void Start () {
@@ -18,8 +19,9 @@ public class CambiadorTamanioPelota : MonoBehaviour {
 	void Update () {
 		if (sldTamanioPelota.value!=escalaActualPelota)
 		{
-			pelota.transform.localScale=new Vector3(sldTamanioPelota.value,sldTamanioPelota.value,sldTamanioPelota.value);
+			pelota.transform.localScale=new Vector3(sldTamanioPelota.value/2,sldTamanioPelota.value/2,sldTamanioPelota.value/2);
 			escalaActualPelota=sldTamanioPelota.value;
+			txtTamanioPelota.text=escalaActualPelota.ToString();
 		}		
 	}
 	

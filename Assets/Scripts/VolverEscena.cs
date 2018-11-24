@@ -18,7 +18,8 @@ public class VolverEscena : MonoBehaviour {
 		ComportamientoPelota.finalizarJuego=false;
 		ComportamientoPelota.cantidadEncontradas=0;
 		ComportamientoPelota.instancias=0;
-		ComportamientoPelota.pelotasInstanciadas.Clear();
+		ComportamientoPelota.pelotasEnElJuego.Clear();
+		ComportamientoPelota.esNecesarioVolver=false;
 
 	}
 

@@ -7,6 +7,7 @@ public class CambiadorDeResaltadas : MonoBehaviour {
 
 	public Text TxtCantidadResaltadas;
 	public Slider sldCantidadResaltadas;
+	public Slider sldCantidadPelotas;
 	public int cantidadResaltadas;
 
 	// Use this for initialization
