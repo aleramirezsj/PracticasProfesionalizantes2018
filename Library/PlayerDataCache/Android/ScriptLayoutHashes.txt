@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-C:/Users/Ramirez/Documents/Prototipo1PP/Prototipo1PP.apk
+C:/Users/Ramirez/Documents/Prototipo1PP/WhatsTheBall.apk
 SceneListBegin?
 Assets/Scenes/Inicio.unity
 Assets/Scenes/Menu.unity
@@ -127,7 +127,7 @@ d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-c52f1c1b1cc7c3787777d1a7867c885d Assembly-CSharp.dll:.CambiadorDeTiempoDeColor
+e0ce4b4b099af191c7858ab914b4a145 Assembly-CSharp.dll:.CambiadorDeTiempoDeColor
 a3c4f6168fdec1e9debee096e97ab787 Assembly-CSharp.dll:TMPro.Examples.TMP_TextEventCheck
 96f3ea9f23b6f08e60710ebb4af49174 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 1655e5cbdafc3f52a798a8128c8c7c12 Assembly-CSharp.dll:TMPro.TMP_TextEventHandler
@@ -138,7 +138,7 @@ fe35204158fa831d6745ed9c01b13a22 Assembly-CSharp.dll:.CambiarEscena
 bb3f8ae71cc0b231bf331b52aca45ebd Assembly-CSharp.dll:TMPro.Examples.CameraController
 7e7ee21ab8ff1f2eb206565d6caa2bfd Assembly-CSharp.dll:TMPro.Examples.VertexJitter
 486cd95c82d8305219c352c06b776e1f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
-df4ebc5a214a757dd7804ab8d895d3f2 Assembly-CSharp.dll:.CambiadorDeTiempoDeInicio
+13eaf63e53aea7d3966dfe1f5af16848 Assembly-CSharp.dll:.CambiadorDeTiempoDeInicio
 eaf0bcdb10d442a4029d615f41d09957 Unity.TextMeshPro.dll:TMPro.TextContainer
 e5930b3f3763871ca43745d91dd968d4 Assembly-CSharp.dll:.ChatController
 d3985f23b121be7ae04a7237d84c9372 Assembly-CSharp.dll:TMPro.Examples.TMP_ExampleScript_01

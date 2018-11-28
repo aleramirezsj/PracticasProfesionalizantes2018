@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class CambiadorDeTiempoDeColor : MonoBehaviour {
 
 	public Text TxtTiempoDeColor;
+	public Text TxtTiempoDeInicio;
 	private int tiempoDeColor;
+	private int tiempoDeInicio;
 	public Slider sldTiempoDeColor;
+	public Slider sldTiempoDeInicio;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +22,9 @@ public class CambiadorDeTiempoDeColor : MonoBehaviour {
 		if (sldTiempoDeColor.value!=tiempoDeColor)
 		{
 			tiempoDeColor=(int)sldTiempoDeColor.value;
+			tiempoDeInicio=(int)sldTiempoDeInicio.value;
 			TxtTiempoDeColor.text=tiempoDeColor.ToString();
+			TxtTiempoDeInicio.text=(tiempoDeColor+tiempoDeInicio).ToString();
 		}
 	}
 

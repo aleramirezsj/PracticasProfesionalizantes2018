@@ -7,7 +7,9 @@ public class CambiadorDeTiempoDeInicio : MonoBehaviour {
 
 	public Text TxtTiempoDeInicio;
 	private int tiempoDeInicio;
+	private int tiempoDeColor;
 	public Slider sldTiempoDeInicio;
+	public Slider sldTiempoDeColor;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +21,8 @@ public class CambiadorDeTiempoDeInicio : MonoBehaviour {
 		if (sldTiempoDeInicio.value!=tiempoDeInicio)
 		{
 			tiempoDeInicio=(int)sldTiempoDeInicio.value;
-			TxtTiempoDeInicio.text=tiempoDeInicio.ToString();
+			tiempoDeColor=(int)sldTiempoDeColor.value;
+			TxtTiempoDeInicio.text=(tiempoDeInicio+tiempoDeColor).ToString();
 		}
 	}
 

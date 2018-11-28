@@ -51,6 +51,7 @@ public class CambiarEscena : MonoBehaviour {
 		 //si existe el archivo con la configuración del juego lo recupera y setea todas las configuraciones de la pantalla con los valores
 		//recuperados		
 		//txtVelocidadPelotas.text=Application.persistentDataPath.ToString();
+		Screen.fullScreen = false;
 		if (File.Exists(Application.persistentDataPath+"/DatosJuego.dat")){
 			BinaryFormatter bf= new BinaryFormatter();
 			FileStream archivo=File.Open(Application.persistentDataPath+"/DatosJuego.dat",FileMode.OpenOrCreate);	
@@ -64,7 +65,7 @@ public class CambiarEscena : MonoBehaviour {
 			infNombreJugador.text=parametros.jugadorActual;	
 			ChkIniciarInmediatamente.isOn=parametros.iniciarInmediatamente;
 			txtTiempoDeColor.text=parametros.tiempoDeColor.ToString();
-			txtTiempoDeInicio.text=parametros.tiempoDeInicio.ToString();
+			txtTiempoDeInicio.text=(parametros.tiempoDeInicio+parametros.tiempoDeColor).ToString();
 			chkContinuarRebotes.isOn=parametros.continuarRebotes;
 			pelota.transform.localScale=new Vector3(parametros.tamanioActualPelota/2,parametros.tamanioActualPelota/2,parametros.tamanioActualPelota/2);
 			//txtVelocidadPelotas.text="SI";

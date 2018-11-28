@@ -217,8 +217,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -487, y: 7}
-  m_SizeDelta: {x: 30, y: 110.4}
+  m_AnchoredPosition: {x: -467, y: 7}
+  m_SizeDelta: {x: 40, y: 110.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7604568
 MonoBehaviour:
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TxtTiempoDeInicio: {fileID: 1997771886}
   sldTiempoDeInicio: {fileID: 7604569}
+  sldTiempoDeColor: {fileID: 1473998659}
 --- !u!114 &7604569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,8 +823,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 334, y: 201}
-  m_SizeDelta: {x: 30, y: 110.4}
+  m_AnchoredPosition: {x: 313.99997, y: 201}
+  m_SizeDelta: {x: 40, y: 110.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &327053987
 MonoBehaviour:
@@ -1083,8 +1084,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -405.25, y: 201}
-  m_SizeDelta: {x: 193.5, y: 55.8}
+  m_AnchoredPosition: {x: -332.1, y: 201}
+  m_SizeDelta: {x: 339.8, y: 55.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &393999141
 MonoBehaviour:
@@ -1618,7 +1619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 24.900002, y: 0}
+  m_AnchoredPosition: {x: 24.899994, y: 0}
   m_SizeDelta: {x: 49.8, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &627590499
@@ -1665,7 +1666,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -42, y: 141}
+  m_AnchoredPosition: {x: -40, y: 86}
   m_SizeDelta: {x: 48, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &653160022
@@ -1858,8 +1859,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 334, y: 13}
-  m_SizeDelta: {x: 30, y: 110.4}
+  m_AnchoredPosition: {x: 314, y: 13}
+  m_SizeDelta: {x: 40, y: 110.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &748551101
 MonoBehaviour:
@@ -2001,7 +2002,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Tama\xF1o de pelota"
+  m_Text: "Tama\xF1o \nde pelota"
 --- !u!222 &768263786
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2113,8 +2114,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 334, y: -188}
-  m_SizeDelta: {x: 30, y: 110.4}
+  m_AnchoredPosition: {x: 313.99997, y: -188}
+  m_SizeDelta: {x: 40, y: 110.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &787528330
 MonoBehaviour:
@@ -2358,7 +2359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.7985852, y: 1}
-  m_AnchoredPosition: {x: -6.072899, y: 3.7000008}
+  m_AnchoredPosition: {x: -6.072891, y: 3.7000008}
   m_SizeDelta: {x: 9.8542, y: 7.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &847655375
@@ -2517,7 +2518,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 85, y: 204}
-  m_SizeDelta: {x: 30, y: 110.4}
+  m_SizeDelta: {x: 40, y: 110.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &848555856
 MonoBehaviour:
@@ -2658,7 +2659,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cantidad de Pelotas en total
+  m_Text: Pelotas en juego
 --- !u!222 &875018861
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3162,7 +3163,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1206562748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.13, y: 0.09, z: 100}
+  m_LocalPosition: {x: 0.05, y: -0.39, z: 100}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3799,8 +3800,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -487, y: -184}
-  m_SizeDelta: {x: 30, y: 110.4}
+  m_AnchoredPosition: {x: -467, y: -184}
+  m_SizeDelta: {x: 40, y: 110.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1473998658
 MonoBehaviour:
@@ -3814,7 +3815,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TxtTiempoDeColor: {fileID: 563323788}
+  TxtTiempoDeInicio: {fileID: 1997771886}
   sldTiempoDeColor: {fileID: 1473998659}
+  sldTiempoDeInicio: {fileID: 7604569}
 --- !u!114 &1473998659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4100,7 +4103,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cantidad de Pelotas resaltadas
+  m_Text: Pelotas resaltadas
 --- !u!222 &1924892624
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4123,8 +4126,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 460, y: 231}
-  m_SizeDelta: {x: 111.5, y: 45.613}
+  m_AnchoredPosition: {x: 434.8, y: 222.08}
+  m_SizeDelta: {x: 110.6, y: 56.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1968293572
 GameObject:
@@ -4193,7 +4196,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tiempo de pelota con otro color
+  m_Text: Tiempo de resaltado
 --- !u!222 &1968293575
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4426,7 +4429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 42, y: 141}
+  m_AnchoredPosition: {x: 44, y: 86}
   m_SizeDelta: {x: 48, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2042298333

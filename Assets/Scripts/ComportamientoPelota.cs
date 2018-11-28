@@ -34,6 +34,7 @@ public class ComportamientoPelota : MonoBehaviour {
 	
 
     void Start () {
+		Screen.fullScreen = false;
 		Logs();
 		//almaceno el color original en la propiedad estática y la pelota original en la lista de pelotas
 		if(instancias==0){
