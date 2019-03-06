@@ -69,7 +69,23 @@ public class CambiarEscena : MonoBehaviour {
 			chkContinuarRebotes.isOn=parametros.continuarRebotes;
 			pelota.transform.localScale=new Vector3(parametros.tamanioActualPelota/2,parametros.tamanioActualPelota/2,parametros.tamanioActualPelota/2);
 			//txtVelocidadPelotas.text="SI";
+		}else{
+			txtTamanioPelota.text="5";
+			txtCantidadResaltadas.text="1";
+			txtCantidadPelotas.text="5";
+			txtVelocidadPelotas.text="5";
+			txtTiempoDeInicio.text="5";
+			txtTiempoDeColor.text="5";
+
+			PlayerPrefs.SetString("nombreJugador","Jugador");
+			PlayerPrefs.SetInt("cantidadTotalPelotas", 5);
+			PlayerPrefs.SetInt("cantidadResaltadas",1);
+			PlayerPrefs.SetFloat("escalaActualPelota",5);
+			PlayerPrefs.SetInt("velocidadPelotasActual", 5);
+			PlayerPrefs.SetInt("tiempoDeColor",5);
+			PlayerPrefs.SetInt("tiempoDeInicio",5);
 		}
+		
 	}
 
 

@@ -249,8 +249,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 2800000, guid: 2c81012df97b6364e80cb479e378dd9a, type: 3}
-  AndroidKeystoreName: C:/Users/Ramirez/Documents/Prototipo1PP/user.keystore
-  AndroidKeyaliasName: whatstheball
+  AndroidKeystoreName: 
+  AndroidKeyaliasName: 
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 0
